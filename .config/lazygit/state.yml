@@ -1,0 +1,10 @@
+lastupdatecheck: 0
+recentrepos:
+- /home/niksingh710/repos/getnf
+- /home/niksingh710/repos/gui-configuration
+- /home/niksingh710/.config/nvim
+startuppopupversion: 5
+customcommandshistory:
+- nohl
+hidecommandlog: true
+ignorewhitespaceindiffview: false

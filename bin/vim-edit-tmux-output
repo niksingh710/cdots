@@ -1,0 +1,13 @@
+#!/bin/env bash
+
+# $HOME/bin/vim-edit-tmux-output
+
+check(){
+  command -v "$1" &>/dev/null
+}
+
+editor="${EDITOR:-vim}"
+
+file=$(mktemp).txt
+tmux capture-pane -pS -32768 >$file
+tmux new-window -n:mywindow "$editor '+ normal G $' $file"

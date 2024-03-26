@@ -1,0 +1,30 @@
+# ██████   █████  ████████ ██   ██ 
+# ██   ██ ██   ██    ██    ██   ██ 
+# ██████  ███████    ██    ███████ 
+# ██      ██   ██    ██    ██   ██ 
+# ██      ██   ██    ██    ██   ██ 
+# Setting up path variable.
+[ -d "$HOME/go" ] && export GOPATH="$HOME/go"
+[ -d "$HOME/.local/share/pnpm" ] && export PNPM_HOME="$HOME/.local/share/pnpm"
+
+pathList=(
+  "$HOME/bin"
+  "$PNPM_HOME"
+  "$GOPATH/bin"
+  "$HOME/.npm/bin"
+  "$HOME/.npm-global/bin"
+  "$HOME/.extra-gui/bin"
+  "$HOME/.local/bin"
+  "$HOME/.cargo/bin"
+  "$HOME/.config/shell/bin"
+  "$HOME/.local/share/pnpm"
+  "$HOME/.pyenv/bin"
+  "$HOME/.local/share/gem/ruby/3.0.0/bin"
+)
+
+for i in "${pathList[@]}"
+do
+  if [ -d $i ] && [[ ":$PATH:" != *":$i:"* ]]; then
+    export PATH="${PATH:+"$PATH:"}$i"
+  fi
+done
