@@ -29,7 +29,7 @@ The configuration highly uses **[Fzf](https://github.com/junegunn/fzf)** and **[
 ```bash
 yay -S fd ripgrep shellcheck-bin shfmt advcpmv bat lsd git glow urlview git-secret \
   starship tmux fzf zoxide ssh zsh zsh-completions-git \
-  trash-cli xstow ttf-jetbrains-mono-nerd \
+  trash-cli xstow ttf-jetbrains-mono-nerd 
 ```
 
 ### Setup
