@@ -38,6 +38,7 @@ Setup is done by using `stow` command. I use xstow a fork of stow command.<br>
 This command will place the files in the correct location.
 
 ```bash
+mkdir -p ~/.local/bin/
 xstow home -t ~
 xstow bin -t ~/.local/bin
 xstow .config -t ~/.config

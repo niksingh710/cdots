@@ -79,7 +79,6 @@ check nvim && export VISUAL=nvim
 export EDITOR=$VISUAL
 
 [ -f "$HOME/.shell/path" ] && source "$HOME/.shell/path"
-
 plugins_path="$HOME/.zsh_plugins"
 
 [ -d "$plugins_path" ] || mkdir -p "$plugins_path"
@@ -106,7 +105,11 @@ if [ "$SESSION_TYPE" != "remote/ssh" ]; then
 fi
 
 znap source softmoth/zsh-vim-mode
-znap source ohmyzsh/ohmyzsh 'lib/theme-and-appearance.zsh' plugins/{sudo,colored-man-pages}
+znap source ohmyzsh/ohmyzsh lib/theme-and-appearance
+
+znap source ohmyzsh/ohmyzsh plugins/sudo
+znap source ohmyzsh/ohmyzsh plugins/colored-man-pages
+znap source ohmyzsh/ohmyzsh plugins/safe-paste
 
 # Completions
 znap function _starship starship 'eval "$( starship completions zsh )"'
