@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# This script will play puple cat live stream by using mpv player (no video, only audio)
+
+notify() {
+  check "notify-send" && {
+    notify-send -a "pcat" "Purple Cat" "$1"
+  } || {
+    echo "$1"
+  }
+}
+
+check() {
+  if ! command -v "$1" &>/dev/null; then
+    notify "$1 is not installed"
+    exit 1
+  fi
+}
+
+if [ -f /tmp/pcat.pid ]; then
+  kill -9 $(cat /tmp/pcat.pid) &>/dev/null
+  rm /tmp/pcat.pid
+  notify "Stopped"
+  exit 0
+fi
+
+check mpv
+check cava
+check foot
+
+stream_url="https://www.youtube.com/watch?v=rCYXH4CYP3I"
+args=(
+  "--no-video"
+  "--ytdl-format=bestaudio"
+  "--no-cache"
+  "--no-resume-playback"
+  "--no-audio-display"
+  "--no-terminal"
+  "--input-ipc-server=/tmp/mpvsocket"
+)
+
+mpv "${args[@]}" "$stream_url" &
+mpv_pid=$!
+foot -o colors.alpha=0 -H -a "foot-cava" sh -c "cava" &
+cava_pid=$!
+
+echo "$mpv_pid $cava_pid" >/tmp/pcat.pid

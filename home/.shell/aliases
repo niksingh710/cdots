@@ -340,6 +340,10 @@ check yt-dlp && {
   }
 }
 
+if check foot && check cava; then
+  alias clean-cava='setsid foot -o colors.alpha=0 -a "foot-cava" sh -c "cava" &>/dev/null'
+fi
+
 check archwiki-offline && {
   _temp_file="$(mktemp -q)"
   cat <<EOF >"$_temp_file"
