@@ -88,6 +88,13 @@ plugins_path="$HOME/.zsh_plugins"
 
 source "$plugins_path/znap/znap.zsh"
 
+znap_update() {
+  unset cd
+  unset -f cd
+  znap pull
+  exec zsh
+}
+
 # Prompt
 # znap eval starship 'starship init zsh --print-full-init'
 # znap prompt
