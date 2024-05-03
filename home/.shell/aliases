@@ -39,6 +39,9 @@ check mysql && {
   }
 }
 
+check vimiv && alias vimg="setsid vimiv ./*/**/* &>/dev/null"
+check adb && alias adb-power="adb shell input keyevent 26"
+
 # Arch specific
 check pacman && {
   pkmgr="$rootmgr pacman"
