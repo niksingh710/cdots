@@ -13,6 +13,28 @@ check lsd && TREE="lsd --tree --depth 2"
 check wl-copy && CLIP="wl-copy" || CLIP="xclip -selection clipboard"
 check pbcopy && CLIP="pbcopy"
 
+check rg && {
+  export FZF_DEFAULT_COMMAND="rg -uu \
+          --files \
+          -H"
+}
+
+if [[ -z "$DISPLAY" ]]; then
+  FZF_DEFAULT_OPTS+="
+  --color=info:1 \  
+  --color=prompt:2 \
+  --color=pointer:3 \
+  --color=hl+:4 \
+  --color=marker:6 \
+  --color=spinner:7 \
+  --color=header:8 \
+  --color=border:9 \
+  --color=hl:122 \
+  --color=preview-fg:11 \
+  --color=fg:13 \
+  --color=fg+:14"
+fi
+
 check preview && {
   function preview_str() {
     # echo "--preview='preview --ueberzugpp {$1}; preview --cleanup'"
@@ -27,6 +49,20 @@ export FZF_CUSTOM_BINDS=(
   "--bind=ctrl-space:select"
   "--bind=ctrl-/:deselect"
   "--bind=ctrl-p:change-preview-window(down|hidden|)"
+  "--bind=ctrl-s:preview-page-down"
+  "--bind=alt-p:toggle-preview"
+  "--bind=ctrl-a:preview-page-up"
+  "--bind=alt-u:page-up+refresh-preview"
+  "--bind=alt-d:page-down+refresh-preview"
+  "--bind=alt-y:yank"
+  "--bind=ctrl-y:kill-line"
+  "--bind=alt-g:ignore"
+  "--bind=ctrl-g:top"
+  "--bind=alt-a:toggle-all"
+  "--bind=alt-s:toggle-sort"
+  "--bind=alt-h:backward-char+refresh-preview"
+  "--bind=alt-l:forward-char+refresh-preview"
+  "--bind=ctrl-l:clear-screen"
 )
 
 FZF_CUSTOM_BINDS_STR=""
@@ -52,11 +88,11 @@ export FZF_CTRL_R_OPTS="
 export FZF_DEFAULT_OPTS="$FZF_CUSTOM_BINDS_STR --no-height --no-reverse"
 export FZF_CTRL_T_OPTS="$FZF_CUSTOM_BINDS_STR $FZF_CUSTOM_PREVIEW --layout=reverse"
 export FZF_ALT_C_OPTS="$FZF_CUSTOM_BINDS_STR $FZF_CUSTOM_PREVIEW --layout=reverse"
-export FZF_CTRL_T_COMMAND="find ./ -type f -not -path '*/\.git*'"
+export FZF_CTRL_T_COMMAND="find ./ -type f -not -path '*/\.git*' | sort -nr"
 export FZF_ALT_C_COMMAND="find $dirPath -maxdepth 1 -not -path '*/\.git*' -type d"
 
 check fd && {
-	export FZF_CTRL_T_COMMAND="fd -H -tf --follow --exclude .git"
+	export FZF_CTRL_T_COMMAND="fd -H -tf --follow --exclude .git | sort -nr"
   export FZF_ALT_C_COMMAND="fd $dirPATH -H -td --exclude .git"
 } || echo "For better fzf experience make sure you have fd install"
 
