@@ -80,6 +80,9 @@ I have my fzf setted up via `~/.shell/fzf.zsh` where i perform mapping for fzf a
 | `Ctrl-/` (fzf list) | DeSelect in multiple Selection |
 </div>
 
+| ![image](https://github.com/niksingh710/cdots/assets/60490474/6a96631d-02c0-4c5a-a777-1edaff594081) | ![image](https://github.com/niksingh710/cdots/assets/60490474/3a761775-695a-4160-a835-6077fd1cc90a) |
+| - | - |
+
 | ![image](https://github.com/niksingh710/cdots/assets/60490474/6ab40586-9978-4b8c-b944-f0343e180b6a) | ![image](https://github.com/niksingh710/cdots/assets/60490474/bf5cf7cf-b5bc-4d59-92ed-d73c71f15df8) |
 | - | - |
 
