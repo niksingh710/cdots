@@ -9,6 +9,7 @@ check (){
 
 TREE="tree -C"
 check lsd && TREE="lsd --tree --depth 2"
+check eza && TREE="eza --tree -L 2"
 
 check wl-copy && CLIP="wl-copy" || CLIP="xclip -selection clipboard"
 check pbcopy && CLIP="pbcopy"
@@ -97,8 +98,12 @@ export FZF_CTRL_T_COMMAND="find ./ -type f -not -path '*/\.git*' | sort -nr"
 export FZF_ALT_C_COMMAND="find $dirPath -maxdepth 1 -not -path '*/\.git*' -type d"
 
 check fd && {
-  export FZF_CTRL_T_COMMAND="fd -H -tf --follow --exclude .git | sort -nr"
-  export FZF_ALT_C_COMMAND="fd $dirPATH -H -td --exclude .git"
+  exclude_list=(
+    "--exclude .git"
+    "--exclude go"
+  )
+  export FZF_CTRL_T_COMMAND="fd -H -tf --follow ${exclude_list[*]} | xargs ls -t"
+  export FZF_ALT_C_COMMAND="fd $dirPATH -td ${exclude_list[*]} | xargs ls -dt"
 } || echo "For better fzf experience make sure you have fd install"
 
 check zoxide && export _ZO_FZF_OPTS="$FZF_CUSTOM_BINDS $(preview_str -1) --height=60%"
@@ -133,6 +138,7 @@ zstyle ':fzf-tab:complete:nvim:*' fzf-preview 'preview --sixel $realpath'
 zstyle ':fzf-tab:complete:e:*' fzf-preview 'preview --sixel $realpath'
 
 zstyle ':fzf-tab:complete:lsd:*' fzf-preview 'preview --sixel $realpath'
+zstyle ':fzf-tab:complete:eza:*' fzf-preview 'preview --sixel $realpath'
 zstyle ':fzf-tab:complete:(\\|)run-help:*' fzf-preview 'run-help $word'
 zstyle ':fzf-tab:complete:(\\|*/|)man:*' fzf-preview 'man $word'
 

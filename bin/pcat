@@ -28,7 +28,7 @@ check mpv
 check cava
 check foot
 
-stream_url="https://www.youtube.com/watch?v=rCYXH4CYP3I"
+stream_url="https://www.youtube.com/watch?v=TA68dvHsRXU"
 args=(
   "--no-video"
   "--ytdl-format=bestaudio"

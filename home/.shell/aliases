@@ -174,6 +174,27 @@ check lsd && {
   alias lt='ls --tree'
 }
 
+check eza && {
+  eza_params=('--git' '--icons' '--classify' '--group-directories-first' '--time-style=long-iso' '--group' '--color-scale')
+  alias ls='eza $eza_params'
+  alias l='eza --git-ignore $eza_params'
+  alias ll='eza --all --header --long $eza_params'
+  alias llm='eza --all --header --long --sort=modified $eza_params'
+  alias la='eza -lbhHigUmuSa'
+  alias lsa='eza -ahF'
+  alias lx='eza -lbhHigUmuSa@'
+  alias lt='eza --tree $eza_params'
+  alias tree='eza --tree $eza_params'
+
+  # args="--color=auto --icons --sort=size --group-directories-first"
+  # alias l="eza -lahF $args"
+  # alias ls="eza -hF $args"
+  # alias la="eza -ahF $args"
+  # alias lss="eza -lhF $args"
+  # alias lst="eza -lahT $args"
+  # alias lt="eza -aT $args"
+}
+
 check nvim && alias ncal="nvim -c ':Calendar'"
 check neovide && alias eu="neovide"
 check mumble && {
@@ -244,6 +265,22 @@ check git && {
     fi
 
   }
+  # Git
+  alias gc="git commit -m"
+  alias gca="git commit -a -m"
+  alias gp="git push origin HEAD"
+  alias gpu="git pull origin"
+  alias gst="git status"
+  alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
+  alias gdiff="git diff"
+  alias gco="git checkout"
+  alias gb='git branch'
+  alias gba='git branch -a'
+  alias gadd='git add'
+  alias ga='git add -p'
+  alias gcoall='git checkout -- .'
+  alias gr='git remote'
+  alias gre='git reset'
 }
 
 d() {
