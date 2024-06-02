@@ -116,7 +116,7 @@ Quick vim setup for TTY. if don't want to setup whole shell
 
 ```
 
-curl https://raw.githubusercontent.com/niksingh710/cdots/master/shell/.vimrc > ~/.vimrc
+curl https://raw.githubusercontent.com/niksingh710/cdots/master/home/.vimrc > ~/.vimrc
 
 ```
 
